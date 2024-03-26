@@ -1,0 +1,15 @@
+syntax = "proto3";
+package titan.titan;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "titan/x/titan/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "titan/x/titan/Params";
+  option (gogoproto.equal) = true;
+
+  
+}
