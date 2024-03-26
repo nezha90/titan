@@ -47,6 +47,8 @@ func initAppConfig() (string, interface{}) {
 	// Optionally allow the chain developer to overwrite the SDK's default
 	// server config.
 	srvCfg := serverconfig.DefaultConfig()
+	srvCfg.StateSync.SnapshotInterval = 1000
+	srvCfg.StateSync.SnapshotKeepRecent = 10
 	// The SDK's default minimum gas price is set to "" (empty value) inside
 	// app.toml. If left empty by validators, the node will halt on startup.
 	// However, the chain developer can set a default app.toml value for their
