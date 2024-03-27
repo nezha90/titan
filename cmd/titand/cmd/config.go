@@ -4,8 +4,6 @@ import (
 	cmtcfg "github.com/cometbft/cometbft/config"
 	serverconfig "github.com/cosmos/cosmos-sdk/server/config"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"time"
-
 	"titan/app"
 )
 
@@ -29,7 +27,6 @@ func initSDKConfig() {
 // return cmtcfg.DefaultConfig if no custom configuration is required for the application.
 func initCometBFTConfig() *cmtcfg.Config {
 	cfg := cmtcfg.DefaultConfig()
-	cfg.Consensus.TimeoutCommit = 5000 * time.Millisecond
 	// these values put a higher strain on node memory
 	// cfg.P2P.MaxNumInboundPeers = 100
 	// cfg.P2P.MaxNumOutboundPeers = 40
