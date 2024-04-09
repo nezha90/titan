@@ -1,0 +1,17 @@
+syntax = "proto3";
+package titan.tokenfactory;
+
+option go_package = "titan/x/tokenfactory/types";
+
+message Denom {
+  string denom = 1; 
+  string description = 2; 
+  string ticker = 3; 
+  int32 precision = 4; 
+  string url = 5; 
+  uint64 maxSupply = 6; 
+  uint64 supply = 7; 
+  bool canChangeMaxSupply = 8; 
+  string owner = 9;
+}
+
