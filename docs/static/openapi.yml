@@ -19546,16 +19546,13 @@ paths:
               maxSupply:
                 type: string
                 format: uint64
-              supply:
-                type: string
-                format: uint64
               canChangeMaxSupply:
                 type: boolean
       tags:
         - Msg
-  /titan.tokenfactory.Msg/DeleteDenom:
+  /titan.tokenfactory.Msg/MintAndSendTokens:
     post:
-      operationId: TitanTokenfactoryMsg_DeleteDenom
+      operationId: TitanTokenfactoryMsg_MintAndSendTokens
       responses:
         '200':
           description: A successful response.
@@ -19589,6 +19586,11 @@ paths:
               owner:
                 type: string
               denom:
+                type: string
+              amount:
+                type: string
+                format: uint64
+              recipient:
                 type: string
       tags:
         - Msg
@@ -19631,21 +19633,54 @@ paths:
                 type: string
               description:
                 type: string
-              ticker:
-                type: string
-              precision:
-                type: integer
-                format: int32
               url:
                 type: string
               maxSupply:
                 type: string
                 format: uint64
-              supply:
-                type: string
-                format: uint64
               canChangeMaxSupply:
                 type: boolean
+      tags:
+        - Msg
+  /titan.tokenfactory.Msg/UpdateOwner:
+    post:
+      operationId: TitanTokenfactoryMsg_UpdateOwner
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              owner:
+                type: string
+              denom:
+                type: string
+              newOwner:
+                type: string
       tags:
         - Msg
   /titan.tokenfactory.Msg/UpdateParams:
@@ -27653,21 +27688,23 @@ definitions:
       maxSupply:
         type: string
         format: uint64
-      supply:
-        type: string
-        format: uint64
       canChangeMaxSupply:
         type: boolean
   titan.tokenfactory.MsgCreateDenomResponse:
     type: object
-  titan.tokenfactory.MsgDeleteDenom:
+  titan.tokenfactory.MsgMintAndSendTokens:
     type: object
     properties:
       owner:
         type: string
       denom:
         type: string
-  titan.tokenfactory.MsgDeleteDenomResponse:
+      amount:
+        type: string
+        format: uint64
+      recipient:
+        type: string
+  titan.tokenfactory.MsgMintAndSendTokensResponse:
     type: object
   titan.tokenfactory.MsgUpdateDenom:
     type: object
@@ -27678,22 +27715,25 @@ definitions:
         type: string
       description:
         type: string
-      ticker:
-        type: string
-      precision:
-        type: integer
-        format: int32
       url:
         type: string
       maxSupply:
         type: string
         format: uint64
-      supply:
-        type: string
-        format: uint64
       canChangeMaxSupply:
         type: boolean
   titan.tokenfactory.MsgUpdateDenomResponse:
+    type: object
+  titan.tokenfactory.MsgUpdateOwner:
+    type: object
+    properties:
+      owner:
+        type: string
+      denom:
+        type: string
+      newOwner:
+        type: string
+  titan.tokenfactory.MsgUpdateOwnerResponse:
     type: object
   titan.tokenfactory.MsgUpdateParams:
     type: object
