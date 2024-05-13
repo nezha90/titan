@@ -21,7 +21,7 @@ func (k msgServer) CreateVoucher(goCtx context.Context, msg *types.MsgCreateVouc
 		return nil, sdkError
 	}
 
-	k.AppendVoucher(ctx, amounts, msg.Beneficiary)
+	k.AppendVoucher(ctx, msg.Beneficiary, amounts)
 
 	return &types.MsgCreateVoucherResponse{}, nil
 }
