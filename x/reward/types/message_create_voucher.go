@@ -21,5 +21,16 @@ func (msg *MsgCreateVoucher) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
 	}
+
+	_, err = sdk.AccAddressFromBech32(msg.Beneficiary)
+	if err != nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid beneficiary address (%s)", err)
+	}
+
+	_, err = sdk.ParseCoinsNormalized(msg.Amounts)
+	if err != nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidCoins, "invalid amounts (%s)", err)
+	}
+
 	return nil
 }
