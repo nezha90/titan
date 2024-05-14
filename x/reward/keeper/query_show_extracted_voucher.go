@@ -2,6 +2,8 @@ package keeper
 
 import (
 	"context"
+	errorsmod "cosmossdk.io/errors"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
 	"titan/x/reward/types"
 
@@ -17,8 +19,17 @@ func (k Keeper) ShowExtractedVoucher(goCtx context.Context, req *types.QueryShow
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Process the query
-	_ = ctx
+	_, err := sdk.AccAddressFromBech32(req.Beneficiary)
+	if err != nil {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid beneficiary address (%s)", err)
+	}
 
-	return &types.QueryShowExtractedVoucherResponse{}, nil
+	_, amounts := k.GetVoucher(ctx, req.Beneficiary, false)
+
+	voucher := types.Voucher{
+		Amounts:     amounts.String(),
+		Beneficiary: req.Beneficiary,
+	}
+
+	return &types.QueryShowExtractedVoucherResponse{Voucher: &voucher}, nil
 }
