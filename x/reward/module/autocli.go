@@ -28,6 +28,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
 				},
+				{
+					RpcMethod:      "CreateVoucher",
+					Use:            "create-voucher [amounts] [beneficiary]",
+					Short:          "Send a create-voucher tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "amounts"}, {ProtoField: "beneficiary"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},
