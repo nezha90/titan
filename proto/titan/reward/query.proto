@@ -37,6 +37,12 @@ service Query {
     option (google.api.http).get = "/titan/reward/list_extracted_voucher";
   
   }
+  
+  // Queries a list of ListUnextractedVoucher items.
+  rpc ListUnextractedVoucher (QueryListUnextractedVoucherRequest) returns (QueryListUnextractedVoucherResponse) {
+    option (google.api.http).get = "/titan/reward/list_unextracted_voucher";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -69,6 +75,15 @@ message QueryListExtractedVoucherRequest {
 }
 
 message QueryListExtractedVoucherResponse {
+  Voucher                                voucher    = 1;
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryListUnextractedVoucherRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryListUnextractedVoucherResponse {
   Voucher                                voucher    = 1;
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }

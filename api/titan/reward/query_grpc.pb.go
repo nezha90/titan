@@ -24,6 +24,7 @@ const (
 	Query_ShowExtractedVoucher_FullMethodName   = "/titan.reward.Query/ShowExtractedVoucher"
 	Query_ShowUnextractedVoucher_FullMethodName = "/titan.reward.Query/ShowUnextractedVoucher"
 	Query_ListExtractedVoucher_FullMethodName   = "/titan.reward.Query/ListExtractedVoucher"
+	Query_ListUnextractedVoucher_FullMethodName = "/titan.reward.Query/ListUnextractedVoucher"
 )
 
 // QueryClient is the client API for Query service.
@@ -38,6 +39,8 @@ type QueryClient interface {
 	ShowUnextractedVoucher(ctx context.Context, in *QueryShowUnextractedVoucherRequest, opts ...grpc.CallOption) (*QueryShowUnextractedVoucherResponse, error)
 	// Queries a list of ListExtractedVoucher items.
 	ListExtractedVoucher(ctx context.Context, in *QueryListExtractedVoucherRequest, opts ...grpc.CallOption) (*QueryListExtractedVoucherResponse, error)
+	// Queries a list of ListUnextractedVoucher items.
+	ListUnextractedVoucher(ctx context.Context, in *QueryListUnextractedVoucherRequest, opts ...grpc.CallOption) (*QueryListUnextractedVoucherResponse, error)
 }
 
 type queryClient struct {
@@ -84,6 +87,15 @@ func (c *queryClient) ListExtractedVoucher(ctx context.Context, in *QueryListExt
 	return out, nil
 }
 
+func (c *queryClient) ListUnextractedVoucher(ctx context.Context, in *QueryListUnextractedVoucherRequest, opts ...grpc.CallOption) (*QueryListUnextractedVoucherResponse, error) {
+	out := new(QueryListUnextractedVoucherResponse)
+	err := c.cc.Invoke(ctx, Query_ListUnextractedVoucher_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -96,6 +108,8 @@ type QueryServer interface {
 	ShowUnextractedVoucher(context.Context, *QueryShowUnextractedVoucherRequest) (*QueryShowUnextractedVoucherResponse, error)
 	// Queries a list of ListExtractedVoucher items.
 	ListExtractedVoucher(context.Context, *QueryListExtractedVoucherRequest) (*QueryListExtractedVoucherResponse, error)
+	// Queries a list of ListUnextractedVoucher items.
+	ListUnextractedVoucher(context.Context, *QueryListUnextractedVoucherRequest) (*QueryListUnextractedVoucherResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -114,6 +128,9 @@ func (UnimplementedQueryServer) ShowUnextractedVoucher(context.Context, *QuerySh
 }
 func (UnimplementedQueryServer) ListExtractedVoucher(context.Context, *QueryListExtractedVoucherRequest) (*QueryListExtractedVoucherResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListExtractedVoucher not implemented")
+}
+func (UnimplementedQueryServer) ListUnextractedVoucher(context.Context, *QueryListUnextractedVoucherRequest) (*QueryListUnextractedVoucherResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUnextractedVoucher not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -200,6 +217,24 @@ func _Query_ListExtractedVoucher_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ListUnextractedVoucher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListUnextractedVoucherRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListUnextractedVoucher(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ListUnextractedVoucher_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListUnextractedVoucher(ctx, req.(*QueryListUnextractedVoucherRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -222,6 +257,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListExtractedVoucher",
 			Handler:    _Query_ListExtractedVoucher_Handler,
+		},
+		{
+			MethodName: "ListUnextractedVoucher",
+			Handler:    _Query_ListUnextractedVoucher_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
