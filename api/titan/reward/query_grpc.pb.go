@@ -20,7 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName = "/titan.reward.Query/Params"
+	Query_Params_FullMethodName               = "/titan.reward.Query/Params"
+	Query_ShowExtractedVoucher_FullMethodName = "/titan.reward.Query/ShowExtractedVoucher"
 )
 
 // QueryClient is the client API for Query service.
@@ -29,6 +30,8 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries a list of ShowExtractedVoucher items.
+	ShowExtractedVoucher(ctx context.Context, in *QueryShowExtractedVoucherRequest, opts ...grpc.CallOption) (*QueryShowExtractedVoucherResponse, error)
 }
 
 type queryClient struct {
@@ -48,12 +51,23 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
+func (c *queryClient) ShowExtractedVoucher(ctx context.Context, in *QueryShowExtractedVoucherRequest, opts ...grpc.CallOption) (*QueryShowExtractedVoucherResponse, error) {
+	out := new(QueryShowExtractedVoucherResponse)
+	err := c.cc.Invoke(ctx, Query_ShowExtractedVoucher_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries a list of ShowExtractedVoucher items.
+	ShowExtractedVoucher(context.Context, *QueryShowExtractedVoucherRequest) (*QueryShowExtractedVoucherResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -63,6 +77,9 @@ type UnimplementedQueryServer struct {
 
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (UnimplementedQueryServer) ShowExtractedVoucher(context.Context, *QueryShowExtractedVoucherRequest) (*QueryShowExtractedVoucherResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ShowExtractedVoucher not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -95,6 +112,24 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ShowExtractedVoucher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryShowExtractedVoucherRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ShowExtractedVoucher(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ShowExtractedVoucher_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ShowExtractedVoucher(ctx, req.(*QueryShowExtractedVoucherRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -105,6 +140,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "ShowExtractedVoucher",
+			Handler:    _Query_ShowExtractedVoucher_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

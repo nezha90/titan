@@ -19262,6 +19262,86 @@ paths:
               parameters.
       tags:
         - Msg
+  /titan.reward.Msg/CreateVoucher:
+    post:
+      operationId: TitanRewardMsg_CreateVoucher
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              amounts:
+                type: string
+              beneficiary:
+                type: string
+      tags:
+        - Msg
+  /titan.reward.Msg/ExtractVoucher:
+    post:
+      operationId: TitanRewardMsg_ExtractVoucher
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              beneficiary:
+                type: string
+      tags:
+        - Msg
   /titan.reward.Msg/UpdateParams:
     post:
       summary: |-
@@ -19310,14 +19390,89 @@ paths:
                   authority is the address that controls the module (defaults to
                   x/gov unless overwritten).
               params:
-                description: |-
-                  params defines the module parameters to update.
-
-                  NOTE: All parameters must be supplied.
+                description: 'NOTE: All parameters must be supplied.'
                 type: object
             description: MsgUpdateParams is the Msg/UpdateParams request type.
       tags:
         - Msg
+  /titan/reward/params:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: TitanRewardQuery_Params
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /titan/reward/show_extracted_voucher/{beneficiary}:
+    get:
+      summary: Queries a list of ShowExtractedVoucher items.
+      operationId: TitanRewardQuery_ShowExtractedVoucher
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              voucher:
+                type: object
+                properties:
+                  amounts:
+                    type: string
+                  beneficiary:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: beneficiary
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
   /titan.tokenfactory.Msg/CreateDenom:
     post:
       operationId: TitanTokenfactoryMsg_CreateDenom
@@ -27297,6 +27452,26 @@ definitions:
     description: |-
       Version defines the versioning scheme used to negotiate the IBC verison in
       the connection handshake.
+  titan.reward.MsgCreateVoucher:
+    type: object
+    properties:
+      creator:
+        type: string
+      amounts:
+        type: string
+      beneficiary:
+        type: string
+  titan.reward.MsgCreateVoucherResponse:
+    type: object
+  titan.reward.MsgExtractVoucher:
+    type: object
+    properties:
+      creator:
+        type: string
+      beneficiary:
+        type: string
+  titan.reward.MsgExtractVoucherResponse:
+    type: object
   titan.reward.MsgUpdateParams:
     type: object
     properties:
@@ -27306,10 +27481,7 @@ definitions:
           authority is the address that controls the module (defaults to x/gov
           unless overwritten).
       params:
-        description: |-
-          params defines the module parameters to update.
-
-          NOTE: All parameters must be supplied.
+        description: 'NOTE: All parameters must be supplied.'
         type: object
     description: MsgUpdateParams is the Msg/UpdateParams request type.
   titan.reward.MsgUpdateParamsResponse:
@@ -27320,6 +27492,30 @@ definitions:
   titan.reward.Params:
     type: object
     description: Params defines the parameters for the module.
+  titan.reward.QueryParamsResponse:
+    type: object
+    properties:
+      params:
+        description: params holds all the parameters of this module.
+        type: object
+    description: QueryParamsResponse is response type for the Query/Params RPC method.
+  titan.reward.QueryShowExtractedVoucherResponse:
+    type: object
+    properties:
+      voucher:
+        type: object
+        properties:
+          amounts:
+            type: string
+          beneficiary:
+            type: string
+  titan.reward.Voucher:
+    type: object
+    properties:
+      amounts:
+        type: string
+      beneficiary:
+        type: string
   titan.tokenfactory.MsgCreateDenom:
     type: object
     properties:
