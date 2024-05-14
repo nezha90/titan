@@ -84,7 +84,7 @@ message QueryListUnextractedVoucherRequest {
 }
 
 message QueryListUnextractedVoucherResponse {
-  Voucher                                voucher    = 1;
+  repeated Voucher voucher = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

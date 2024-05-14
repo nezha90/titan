@@ -2,6 +2,10 @@ package keeper
 
 import (
 	"context"
+	"cosmossdk.io/store/prefix"
+	"encoding/json"
+	"github.com/cosmos/cosmos-sdk/runtime"
+	"github.com/cosmos/cosmos-sdk/types/query"
 
 	"titan/x/reward/types"
 
@@ -17,8 +21,28 @@ func (k Keeper) ListUnextractedVoucher(goCtx context.Context, req *types.QueryLi
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Process the query
-	_ = ctx
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.UnExtractedKey))
 
-	return &types.QueryListUnextractedVoucherResponse{}, nil
+	var vouchers []types.Voucher
+	pageRes, err := query.Paginate(store, req.Pagination, func(key []byte, value []byte) error {
+		var amounts sdk.Coins
+		err := json.Unmarshal(value, &amounts)
+		if err != nil {
+			return err
+		}
+
+		vouchers = append(vouchers, types.Voucher{
+			Amounts:     string(key),
+			Beneficiary: amounts.String(),
+		})
+
+		return nil
+	})
+
+	if err != nil {
+		return nil, status.Error(codes.Internal, err.Error())
+	}
+
+	return &types.QueryListUnextractedVoucherResponse{Voucher: vouchers, Pagination: pageRes}, nil
 }
