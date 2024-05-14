@@ -1,0 +1,10 @@
+syntax = "proto3";
+package titan.reward;
+
+option go_package = "titan/x/reward/types";
+
+message Voucher {
+  
+  string amounts = 1; 
+  string beneficiary = 2; 
+}
