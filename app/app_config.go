@@ -7,6 +7,10 @@ import (
 	_ "titan/x/tokenfactory/module" // import for side-effects
 	tokenfactorymoduletypes "titan/x/tokenfactory/types"
 
+	rewardmodulev1 "titan/api/titan/reward/module"
+	_ "titan/x/reward/module" // import for side-effects
+	rewardmoduletypes "titan/x/reward/types"
+
 	runtimev1alpha1 "cosmossdk.io/api/cosmos/app/runtime/v1alpha1"
 	appv1alpha1 "cosmossdk.io/api/cosmos/app/v1alpha1"
 	authmodulev1 "cosmossdk.io/api/cosmos/auth/module/v1"
@@ -95,6 +99,7 @@ var (
 		circuittypes.ModuleName,
 		// chain modules
 		tokenfactorymoduletypes.ModuleName,
+		rewardmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -120,6 +125,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		tokenfactorymoduletypes.ModuleName,
+		rewardmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -139,6 +145,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		tokenfactorymoduletypes.ModuleName,
+		rewardmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -160,6 +167,7 @@ var (
 		{Account: ibcfeetypes.ModuleName},
 		{Account: icatypes.ModuleName},
 		{Account: tokenfactorymoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
+		{Account: rewardmoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
 		// this line is used by starport scaffolding # stargate/app/maccPerms
 	}
 
@@ -298,6 +306,10 @@ var (
 			{
 				Name:   tokenfactorymoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&tokenfactorymodulev1.Module{}),
+			},
+			{
+				Name:   rewardmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&rewardmodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
