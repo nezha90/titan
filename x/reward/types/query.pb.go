@@ -10,7 +10,7 @@ import (
 	math "math"
 	math_bits "math/bits"
 
-	_ "github.com/cosmos/cosmos-sdk/types/query"
+	query "github.com/cosmos/cosmos-sdk/types/query"
 	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	grpc1 "github.com/cosmos/gogoproto/grpc"
@@ -291,6 +291,102 @@ func (m *QueryShowUnextractedVoucherResponse) GetVoucher() *Voucher {
 	return nil
 }
 
+type QueryListExtractedVoucherRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryListExtractedVoucherRequest) Reset()         { *m = QueryListExtractedVoucherRequest{} }
+func (m *QueryListExtractedVoucherRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryListExtractedVoucherRequest) ProtoMessage()    {}
+func (*QueryListExtractedVoucherRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_96a572971f82b2a6, []int{6}
+}
+func (m *QueryListExtractedVoucherRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListExtractedVoucherRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListExtractedVoucherRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListExtractedVoucherRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListExtractedVoucherRequest.Merge(m, src)
+}
+func (m *QueryListExtractedVoucherRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListExtractedVoucherRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListExtractedVoucherRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListExtractedVoucherRequest proto.InternalMessageInfo
+
+func (m *QueryListExtractedVoucherRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryListExtractedVoucherResponse struct {
+	Voucher    *Voucher            `protobuf:"bytes,1,opt,name=voucher,proto3" json:"voucher,omitempty"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryListExtractedVoucherResponse) Reset()         { *m = QueryListExtractedVoucherResponse{} }
+func (m *QueryListExtractedVoucherResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryListExtractedVoucherResponse) ProtoMessage()    {}
+func (*QueryListExtractedVoucherResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_96a572971f82b2a6, []int{7}
+}
+func (m *QueryListExtractedVoucherResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListExtractedVoucherResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListExtractedVoucherResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListExtractedVoucherResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListExtractedVoucherResponse.Merge(m, src)
+}
+func (m *QueryListExtractedVoucherResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListExtractedVoucherResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListExtractedVoucherResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListExtractedVoucherResponse proto.InternalMessageInfo
+
+func (m *QueryListExtractedVoucherResponse) GetVoucher() *Voucher {
+	if m != nil {
+		return m.Voucher
+	}
+	return nil
+}
+
+func (m *QueryListExtractedVoucherResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "titan.reward.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "titan.reward.QueryParamsResponse")
@@ -298,42 +394,50 @@ func init() {
 	proto.RegisterType((*QueryShowExtractedVoucherResponse)(nil), "titan.reward.QueryShowExtractedVoucherResponse")
 	proto.RegisterType((*QueryShowUnextractedVoucherRequest)(nil), "titan.reward.QueryShowUnextractedVoucherRequest")
 	proto.RegisterType((*QueryShowUnextractedVoucherResponse)(nil), "titan.reward.QueryShowUnextractedVoucherResponse")
+	proto.RegisterType((*QueryListExtractedVoucherRequest)(nil), "titan.reward.QueryListExtractedVoucherRequest")
+	proto.RegisterType((*QueryListExtractedVoucherResponse)(nil), "titan.reward.QueryListExtractedVoucherResponse")
 }
 
 func init() { proto.RegisterFile("titan/reward/query.proto", fileDescriptor_96a572971f82b2a6) }
 
 var fileDescriptor_96a572971f82b2a6 = []byte{
-	// 474 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x93, 0x41, 0x8b, 0xd3, 0x40,
-	0x14, 0xc7, 0x33, 0x8a, 0x95, 0x9d, 0xf5, 0xe2, 0x18, 0x97, 0x35, 0x2c, 0x31, 0x1b, 0x2f, 0xb2,
-	0x87, 0x8c, 0xad, 0x8b, 0x82, 0x78, 0x5a, 0xd4, 0xa3, 0x68, 0xd5, 0x3d, 0x78, 0x59, 0x26, 0xd9,
-	0x31, 0x0d, 0xda, 0x99, 0xec, 0xcc, 0x64, 0xdb, 0x22, 0x5e, 0xfc, 0x04, 0x82, 0x5f, 0xc2, 0xa3,
-	0xe0, 0xd1, 0x2f, 0xd0, 0x63, 0xc1, 0x8b, 0x27, 0x91, 0x56, 0xd0, 0x8f, 0x21, 0x9d, 0x99, 0x94,
-	0x06, 0xd3, 0xa8, 0xbd, 0x84, 0xe1, 0xbd, 0xff, 0xfb, 0xbf, 0xdf, 0xbc, 0x97, 0x81, 0xdb, 0x2a,
-	0x53, 0x84, 0x61, 0x41, 0x07, 0x44, 0x1c, 0xe3, 0x93, 0x82, 0x8a, 0x51, 0x94, 0x0b, 0xae, 0x38,
-	0xba, 0xa0, 0x33, 0x91, 0xc9, 0x78, 0x17, 0x49, 0x3f, 0x63, 0x1c, 0xeb, 0xaf, 0x11, 0x78, 0x6e,
-	0xca, 0x53, 0xae, 0x8f, 0x78, 0x7e, 0xb2, 0xd1, 0x9d, 0x94, 0xf3, 0xf4, 0x15, 0xc5, 0x24, 0xcf,
-	0x30, 0x61, 0x8c, 0x2b, 0xa2, 0x32, 0xce, 0xa4, 0xcd, 0xee, 0x25, 0x5c, 0xf6, 0xb9, 0xc4, 0x31,
-	0x91, 0xd4, 0x74, 0xc3, 0xa7, 0xed, 0x98, 0x2a, 0xd2, 0xc6, 0x39, 0x49, 0x33, 0xa6, 0xc5, 0x56,
-	0x7b, 0xa5, 0x82, 0x96, 0x13, 0x41, 0xfa, 0xa5, 0x8d, 0x57, 0x49, 0x9d, 0xf2, 0x22, 0xe9, 0x51,
-	0x61, 0x72, 0xa1, 0x0b, 0xd1, 0xe3, 0xb9, 0xf1, 0x23, 0x5d, 0xd0, 0xa5, 0x27, 0x05, 0x95, 0x2a,
-	0x7c, 0x08, 0x2f, 0x55, 0xa2, 0x32, 0xe7, 0x4c, 0x52, 0x74, 0x1b, 0xb6, 0x8c, 0xf1, 0x36, 0x08,
-	0xc0, 0xf5, 0xcd, 0x8e, 0x1b, 0x2d, 0xdf, 0x3a, 0x32, 0xea, 0x83, 0x8d, 0xf1, 0xb7, 0xab, 0xce,
-	0x87, 0x9f, 0x1f, 0xf7, 0x40, 0xd7, 0xca, 0xc3, 0x7b, 0x30, 0xd0, 0x7e, 0x4f, 0x7a, 0x7c, 0x70,
-	0x7f, 0xa8, 0x04, 0x49, 0x14, 0x3d, 0x3e, 0x34, 0x20, 0xb6, 0x27, 0x0a, 0xe0, 0x66, 0x4c, 0x19,
-	0x7d, 0x91, 0x25, 0x19, 0x11, 0x23, 0xdd, 0x61, 0xa3, 0xbb, 0x1c, 0x0a, 0x9f, 0xc2, 0xdd, 0x06,
-	0x17, 0xcb, 0x88, 0xe1, 0x79, 0x7b, 0x43, 0x0b, 0x79, 0xb9, 0x0a, 0x59, 0xea, 0x4b, 0x55, 0xf8,
-	0x00, 0x86, 0x0b, 0xd7, 0x67, 0x8c, 0xae, 0x4d, 0x77, 0x08, 0xaf, 0x35, 0xfa, 0xac, 0xc9, 0xd7,
-	0xf9, 0x75, 0x16, 0x9e, 0xd3, 0xc6, 0xe8, 0x25, 0x6c, 0x99, 0x11, 0xa3, 0xa0, 0x5a, 0xf3, 0xe7,
-	0x06, 0xbd, 0xdd, 0x06, 0x85, 0x21, 0x09, 0x77, 0xde, 0x7e, 0xf9, 0xf1, 0xfe, 0xcc, 0x16, 0x72,
-	0x71, 0xcd, 0xaf, 0x83, 0x3e, 0x01, 0xe8, 0xd6, 0x0d, 0x1a, 0x45, 0x35, 0xce, 0x0d, 0x7b, 0xf5,
-	0xf0, 0x3f, 0xeb, 0x2d, 0xd7, 0x1d, 0xcd, 0xb5, 0x8f, 0x3a, 0x55, 0x2e, 0xd9, 0xe3, 0x83, 0xa3,
-	0xc5, 0x58, 0x8f, 0xec, 0x78, 0xf0, 0xeb, 0xa5, 0x1d, 0xbc, 0x41, 0x9f, 0x01, 0xdc, 0xaa, 0x5f,
-	0x00, 0xba, 0xb1, 0x82, 0x63, 0xe5, 0xce, 0xbd, 0xf6, 0x7f, 0x54, 0x58, 0xf6, 0xbb, 0x9a, 0xfd,
-	0x16, 0xda, 0xaf, 0x61, 0x2f, 0xd8, 0x5f, 0xe8, 0x0f, 0xa2, 0xf1, 0xd4, 0x07, 0x93, 0xa9, 0x0f,
-	0xbe, 0x4f, 0x7d, 0xf0, 0x6e, 0xe6, 0x3b, 0x93, 0x99, 0xef, 0x7c, 0x9d, 0xf9, 0xce, 0x73, 0xd7,
-	0xd8, 0x0d, 0x4b, 0x43, 0x35, 0xca, 0xa9, 0x8c, 0x5b, 0xfa, 0x0d, 0xdf, 0xfc, 0x1d, 0x00, 0x00,
-	0xff, 0xff, 0xce, 0x95, 0x8c, 0xef, 0x97, 0x04, 0x00, 0x00,
+	// 565 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x94, 0x41, 0x6b, 0x13, 0x41,
+	0x14, 0xc7, 0x33, 0x85, 0x46, 0x3a, 0xf5, 0xe2, 0xb8, 0x96, 0xba, 0x94, 0x35, 0x5d, 0xa5, 0x4a,
+	0x91, 0x19, 0x13, 0x8b, 0x82, 0x78, 0x2a, 0x5a, 0x2f, 0x22, 0x35, 0x6a, 0x0f, 0x5e, 0xca, 0x24,
+	0x1d, 0x37, 0xab, 0xcd, 0xcc, 0x76, 0x67, 0xd2, 0x34, 0x88, 0x17, 0x3f, 0x41, 0xc1, 0xb3, 0x47,
+	0xc1, 0xa3, 0xe0, 0xd1, 0x2f, 0xd0, 0x63, 0xc1, 0x8b, 0x27, 0x91, 0x44, 0xf0, 0x6b, 0x48, 0x66,
+	0x26, 0x75, 0x97, 0x4e, 0x36, 0x36, 0x97, 0xb0, 0xcc, 0xfb, 0xbf, 0xff, 0xfb, 0xcd, 0xe3, 0x3f,
+	0x81, 0x8b, 0x2a, 0x56, 0x94, 0x93, 0x94, 0x75, 0x69, 0xba, 0x43, 0xf6, 0x3a, 0x2c, 0xed, 0xe1,
+	0x24, 0x15, 0x4a, 0xa0, 0xf3, 0xba, 0x82, 0x4d, 0xc5, 0xbf, 0x40, 0xdb, 0x31, 0x17, 0x44, 0xff,
+	0x1a, 0x81, 0xef, 0x45, 0x22, 0x12, 0xfa, 0x93, 0x0c, 0xbf, 0xec, 0xe9, 0x52, 0x24, 0x44, 0xb4,
+	0xcb, 0x08, 0x4d, 0x62, 0x42, 0x39, 0x17, 0x8a, 0xaa, 0x58, 0x70, 0x69, 0xab, 0xab, 0x4d, 0x21,
+	0xdb, 0x42, 0x92, 0x06, 0x95, 0xcc, 0x4c, 0x23, 0xfb, 0xd5, 0x06, 0x53, 0xb4, 0x4a, 0x12, 0x1a,
+	0xc5, 0x5c, 0x8b, 0xad, 0xf6, 0x72, 0x0e, 0x2d, 0xa1, 0x29, 0x6d, 0x8f, 0x6c, 0xfc, 0x5c, 0x69,
+	0x5f, 0x74, 0x9a, 0x2d, 0x96, 0x9a, 0x5a, 0xe8, 0x41, 0xf4, 0x74, 0x68, 0xbc, 0xa9, 0x1b, 0xea,
+	0x6c, 0xaf, 0xc3, 0xa4, 0x0a, 0x9f, 0xc0, 0x8b, 0xb9, 0x53, 0x99, 0x08, 0x2e, 0x19, 0xba, 0x0b,
+	0xcb, 0xc6, 0x78, 0x11, 0x54, 0xc0, 0x8d, 0xf9, 0x9a, 0x87, 0xb3, 0xb7, 0xc6, 0x46, 0xbd, 0x3e,
+	0x77, 0xf4, 0xf3, 0x4a, 0xe9, 0xf3, 0x9f, 0x2f, 0xab, 0xa0, 0x6e, 0xe5, 0xe1, 0x03, 0x58, 0xd1,
+	0x7e, 0xcf, 0x5a, 0xa2, 0xfb, 0xf0, 0x40, 0xa5, 0xb4, 0xa9, 0xd8, 0xce, 0x96, 0x01, 0xb1, 0x33,
+	0x51, 0x05, 0xce, 0x37, 0x18, 0x67, 0xaf, 0xe2, 0x66, 0x4c, 0xd3, 0x9e, 0x9e, 0x30, 0x57, 0xcf,
+	0x1e, 0x85, 0xcf, 0xe1, 0x72, 0x81, 0x8b, 0x65, 0x24, 0xf0, 0x9c, 0xbd, 0xa1, 0x85, 0xbc, 0x94,
+	0x87, 0x1c, 0xe9, 0x47, 0xaa, 0x70, 0x03, 0x86, 0x27, 0xae, 0x2f, 0x38, 0x9b, 0x9a, 0x6e, 0x0b,
+	0x5e, 0x2d, 0xf4, 0x99, 0x96, 0xef, 0xb5, 0xdd, 0xdd, 0xe3, 0x58, 0xaa, 0x71, 0xbb, 0xdb, 0x80,
+	0xf0, 0x5f, 0x20, 0xac, 0xef, 0x0a, 0x36, 0xe9, 0xc1, 0xc3, 0xf4, 0x60, 0x93, 0x55, 0x9b, 0x1e,
+	0xbc, 0x49, 0x23, 0x66, 0x7b, 0xeb, 0x99, 0xce, 0xf0, 0x23, 0xb0, 0x2b, 0x76, 0x0f, 0x9b, 0xf2,
+	0x0a, 0xe8, 0x51, 0x0e, 0x6f, 0x46, 0xf7, 0x5c, 0x9f, 0x88, 0x67, 0xa6, 0x65, 0xf9, 0x6a, 0x87,
+	0xb3, 0x70, 0x56, 0xf3, 0xa1, 0x37, 0xb0, 0x6c, 0xe2, 0x86, 0x2a, 0xf9, 0xe1, 0xa7, 0xd3, 0xec,
+	0x2f, 0x17, 0x28, 0xcc, 0x90, 0x70, 0xe9, 0xfd, 0xf7, 0xdf, 0x1f, 0x66, 0x16, 0x90, 0x47, 0x1c,
+	0xcf, 0x08, 0x7d, 0x05, 0xd0, 0x73, 0x85, 0x0e, 0x61, 0x87, 0x73, 0x41, 0xc6, 0x7d, 0xf2, 0xdf,
+	0x7a, 0xcb, 0x75, 0x4f, 0x73, 0xad, 0xa1, 0x5a, 0x9e, 0x4b, 0xb6, 0x44, 0x77, 0xfb, 0x24, 0x62,
+	0xdb, 0x76, 0xcf, 0xe4, 0x6d, 0x26, 0x8f, 0xef, 0xd0, 0x37, 0x00, 0x17, 0xdc, 0x61, 0x44, 0xb7,
+	0xc6, 0x70, 0x8c, 0xcd, 0xbf, 0x5f, 0x3d, 0x43, 0x87, 0x65, 0xbf, 0xaf, 0xd9, 0xef, 0xa0, 0x35,
+	0x07, 0x7b, 0x87, 0x4f, 0xa2, 0xff, 0x04, 0xa0, 0xe7, 0x4a, 0xa1, 0x73, 0xe7, 0x05, 0x6f, 0xc3,
+	0xb9, 0xf3, 0xa2, 0x78, 0x87, 0x37, 0x35, 0xf7, 0x0a, 0xba, 0x96, 0xe7, 0xde, 0x8d, 0xa5, 0x3a,
+	0xbd, 0xf3, 0x75, 0x7c, 0xd4, 0x0f, 0xc0, 0x71, 0x3f, 0x00, 0xbf, 0xfa, 0x01, 0x38, 0x1c, 0x04,
+	0xa5, 0xe3, 0x41, 0x50, 0xfa, 0x31, 0x08, 0x4a, 0x2f, 0x3d, 0xd3, 0x7e, 0x30, 0x32, 0x50, 0xbd,
+	0x84, 0xc9, 0x46, 0x59, 0xff, 0xef, 0xde, 0xfe, 0x1b, 0x00, 0x00, 0xff, 0xff, 0xed, 0x2b, 0x63,
+	0x18, 0x4b, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -354,6 +458,8 @@ type QueryClient interface {
 	ShowExtractedVoucher(ctx context.Context, in *QueryShowExtractedVoucherRequest, opts ...grpc.CallOption) (*QueryShowExtractedVoucherResponse, error)
 	// Queries a list of ShowUnextractedVoucher items.
 	ShowUnextractedVoucher(ctx context.Context, in *QueryShowUnextractedVoucherRequest, opts ...grpc.CallOption) (*QueryShowUnextractedVoucherResponse, error)
+	// Queries a list of ListExtractedVoucher items.
+	ListExtractedVoucher(ctx context.Context, in *QueryListExtractedVoucherRequest, opts ...grpc.CallOption) (*QueryListExtractedVoucherResponse, error)
 }
 
 type queryClient struct {
@@ -391,6 +497,15 @@ func (c *queryClient) ShowUnextractedVoucher(ctx context.Context, in *QueryShowU
 	return out, nil
 }
 
+func (c *queryClient) ListExtractedVoucher(ctx context.Context, in *QueryListExtractedVoucherRequest, opts ...grpc.CallOption) (*QueryListExtractedVoucherResponse, error) {
+	out := new(QueryListExtractedVoucherResponse)
+	err := c.cc.Invoke(ctx, "/titan.reward.Query/ListExtractedVoucher", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
@@ -399,6 +514,8 @@ type QueryServer interface {
 	ShowExtractedVoucher(context.Context, *QueryShowExtractedVoucherRequest) (*QueryShowExtractedVoucherResponse, error)
 	// Queries a list of ShowUnextractedVoucher items.
 	ShowUnextractedVoucher(context.Context, *QueryShowUnextractedVoucherRequest) (*QueryShowUnextractedVoucherResponse, error)
+	// Queries a list of ListExtractedVoucher items.
+	ListExtractedVoucher(context.Context, *QueryListExtractedVoucherRequest) (*QueryListExtractedVoucherResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -413,6 +530,9 @@ func (*UnimplementedQueryServer) ShowExtractedVoucher(ctx context.Context, req *
 }
 func (*UnimplementedQueryServer) ShowUnextractedVoucher(ctx context.Context, req *QueryShowUnextractedVoucherRequest) (*QueryShowUnextractedVoucherResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ShowUnextractedVoucher not implemented")
+}
+func (*UnimplementedQueryServer) ListExtractedVoucher(ctx context.Context, req *QueryListExtractedVoucherRequest) (*QueryListExtractedVoucherResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListExtractedVoucher not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -473,6 +593,24 @@ func _Query_ShowUnextractedVoucher_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ListExtractedVoucher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListExtractedVoucherRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListExtractedVoucher(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/titan.reward.Query/ListExtractedVoucher",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListExtractedVoucher(ctx, req.(*QueryListExtractedVoucherRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "titan.reward.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -488,6 +626,10 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ShowUnextractedVoucher",
 			Handler:    _Query_ShowUnextractedVoucher_Handler,
+		},
+		{
+			MethodName: "ListExtractedVoucher",
+			Handler:    _Query_ListExtractedVoucher_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -680,6 +822,88 @@ func (m *QueryShowUnextractedVoucherResponse) MarshalToSizedBuffer(dAtA []byte) 
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryListExtractedVoucherRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListExtractedVoucherRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListExtractedVoucherRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryListExtractedVoucherResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListExtractedVoucherResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListExtractedVoucherResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Voucher != nil {
+		{
+			size, err := m.Voucher.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -758,6 +982,36 @@ func (m *QueryShowUnextractedVoucherResponse) Size() (n int) {
 	_ = l
 	if m.Voucher != nil {
 		l = m.Voucher.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryListExtractedVoucherRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryListExtractedVoucherResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Voucher != nil {
+		l = m.Voucher.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
 		n += 1 + l + sovQuery(uint64(l))
 	}
 	return n
@@ -1214,6 +1468,214 @@ func (m *QueryShowUnextractedVoucherResponse) Unmarshal(dAtA []byte) error {
 				m.Voucher = &Voucher{}
 			}
 			if err := m.Voucher.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryListExtractedVoucherRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListExtractedVoucherRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListExtractedVoucherRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryListExtractedVoucherResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListExtractedVoucherResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListExtractedVoucherResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Voucher", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Voucher == nil {
+				m.Voucher = &Voucher{}
+			}
+			if err := m.Voucher.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
