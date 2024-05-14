@@ -34,6 +34,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a create-voucher tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "amounts"}, {ProtoField: "beneficiary"}},
 				},
+				{
+					RpcMethod:      "ExtractVoucher",
+					Use:            "extract-voucher [beneficiary]",
+					Short:          "Send a extract-voucher tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "beneficiary"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

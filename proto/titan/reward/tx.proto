@@ -16,8 +16,9 @@ service Msg {
   
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams  (MsgUpdateParams ) returns (MsgUpdateParamsResponse );
-  rpc CreateVoucher (MsgCreateVoucher) returns (MsgCreateVoucherResponse);
+  rpc UpdateParams   (MsgUpdateParams  ) returns (MsgUpdateParamsResponse  );
+  rpc CreateVoucher  (MsgCreateVoucher ) returns (MsgCreateVoucherResponse );
+  rpc ExtractVoucher (MsgExtractVoucher) returns (MsgExtractVoucherResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -45,4 +46,12 @@ message MsgCreateVoucher {
 }
 
 message MsgCreateVoucherResponse {}
+
+message MsgExtractVoucher {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator     = 1;
+  string beneficiary = 2;
+}
+
+message MsgExtractVoucherResponse {}
 

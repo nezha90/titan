@@ -221,44 +221,137 @@ func (m *MsgCreateVoucherResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgCreateVoucherResponse proto.InternalMessageInfo
 
+type MsgExtractVoucher struct {
+	Creator     string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Beneficiary string `protobuf:"bytes,2,opt,name=beneficiary,proto3" json:"beneficiary,omitempty"`
+}
+
+func (m *MsgExtractVoucher) Reset()         { *m = MsgExtractVoucher{} }
+func (m *MsgExtractVoucher) String() string { return proto.CompactTextString(m) }
+func (*MsgExtractVoucher) ProtoMessage()    {}
+func (*MsgExtractVoucher) Descriptor() ([]byte, []int) {
+	return fileDescriptor_efd9f7d3db50847d, []int{4}
+}
+func (m *MsgExtractVoucher) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgExtractVoucher) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgExtractVoucher.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgExtractVoucher) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgExtractVoucher.Merge(m, src)
+}
+func (m *MsgExtractVoucher) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgExtractVoucher) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgExtractVoucher.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgExtractVoucher proto.InternalMessageInfo
+
+func (m *MsgExtractVoucher) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgExtractVoucher) GetBeneficiary() string {
+	if m != nil {
+		return m.Beneficiary
+	}
+	return ""
+}
+
+type MsgExtractVoucherResponse struct {
+}
+
+func (m *MsgExtractVoucherResponse) Reset()         { *m = MsgExtractVoucherResponse{} }
+func (m *MsgExtractVoucherResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgExtractVoucherResponse) ProtoMessage()    {}
+func (*MsgExtractVoucherResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_efd9f7d3db50847d, []int{5}
+}
+func (m *MsgExtractVoucherResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgExtractVoucherResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgExtractVoucherResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgExtractVoucherResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgExtractVoucherResponse.Merge(m, src)
+}
+func (m *MsgExtractVoucherResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgExtractVoucherResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgExtractVoucherResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgExtractVoucherResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "titan.reward.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "titan.reward.MsgUpdateParamsResponse")
 	proto.RegisterType((*MsgCreateVoucher)(nil), "titan.reward.MsgCreateVoucher")
 	proto.RegisterType((*MsgCreateVoucherResponse)(nil), "titan.reward.MsgCreateVoucherResponse")
+	proto.RegisterType((*MsgExtractVoucher)(nil), "titan.reward.MsgExtractVoucher")
+	proto.RegisterType((*MsgExtractVoucherResponse)(nil), "titan.reward.MsgExtractVoucherResponse")
 }
 
 func init() { proto.RegisterFile("titan/reward/tx.proto", fileDescriptor_efd9f7d3db50847d) }
 
 var fileDescriptor_efd9f7d3db50847d = []byte{
-	// 419 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x92, 0x3f, 0xeb, 0xd3, 0x40,
-	0x18, 0xc7, 0x73, 0x16, 0x2b, 0xb9, 0x56, 0xd4, 0x10, 0x69, 0x1a, 0xf0, 0x2c, 0x01, 0xa5, 0x14,
-	0x4c, 0x68, 0x05, 0x85, 0x6e, 0xd6, 0xb9, 0x20, 0xf1, 0x1f, 0xb8, 0xc8, 0x35, 0x39, 0xd3, 0x0c,
-	0xc9, 0x85, 0xbb, 0x6b, 0x6d, 0x37, 0x71, 0x74, 0xf2, 0x65, 0x38, 0x76, 0xd0, 0xc9, 0x37, 0xd0,
-	0xb1, 0x38, 0x39, 0x89, 0xb4, 0x43, 0xdf, 0xc6, 0x8f, 0xe4, 0x72, 0xb4, 0xc9, 0x0f, 0xba, 0x24,
-	0x79, 0xbe, 0x9f, 0x7b, 0xbe, 0xf7, 0x7d, 0xee, 0x02, 0xef, 0x8b, 0x58, 0xe0, 0xd4, 0x63, 0xe4,
-	0x33, 0x66, 0xa1, 0x27, 0x56, 0x6e, 0xc6, 0xa8, 0xa0, 0x46, 0xbb, 0x90, 0x5d, 0x29, 0xdb, 0xf7,
-	0x70, 0x12, 0xa7, 0xd4, 0x2b, 0x9e, 0x72, 0x81, 0xdd, 0x09, 0x28, 0x4f, 0x28, 0xf7, 0x12, 0x1e,
-	0x79, 0xcb, 0x61, 0xfe, 0x2a, 0x41, 0x57, 0x82, 0x8f, 0x45, 0xe5, 0xc9, 0xa2, 0x44, 0x66, 0x44,
-	0x23, 0x2a, 0xf5, 0xfc, 0x4b, 0x35, 0x54, 0x12, 0x64, 0x98, 0xe1, 0xa4, 0x6c, 0x70, 0x7e, 0x01,
-	0x78, 0x67, 0xca, 0xa3, 0xb7, 0x59, 0x88, 0x05, 0x79, 0x55, 0x10, 0xe3, 0x19, 0xd4, 0xf1, 0x42,
-	0xcc, 0x29, 0x8b, 0xc5, 0xda, 0x02, 0x3d, 0xd0, 0xd7, 0x27, 0xd6, 0x9f, 0x9f, 0x4f, 0xcc, 0x72,
-	0xa7, 0x17, 0x61, 0xc8, 0x08, 0xe7, 0xaf, 0x05, 0x8b, 0xd3, 0xc8, 0x3f, 0x2d, 0x35, 0x9e, 0xc3,
-	0xa6, 0xf4, 0xb6, 0x6e, 0xf4, 0x40, 0xbf, 0x35, 0x32, 0xdd, 0xf3, 0x11, 0x5d, 0xe9, 0x3e, 0xd1,
-	0xb7, 0xff, 0x1e, 0x6a, 0x3f, 0x8e, 0x9b, 0x01, 0xf0, 0xcb, 0xe5, 0xe3, 0xe1, 0xd7, 0xe3, 0x66,
-	0x70, 0x32, 0xfa, 0x76, 0xdc, 0x0c, 0x90, 0x8c, 0xbc, 0x52, 0xa1, 0x6b, 0x19, 0x9d, 0x2e, 0xec,
-	0xd4, 0x24, 0x9f, 0xf0, 0x8c, 0xa6, 0x9c, 0x38, 0x4b, 0x78, 0x77, 0xca, 0xa3, 0x97, 0x8c, 0x60,
-	0x41, 0xde, 0xd1, 0x45, 0x30, 0x27, 0xcc, 0xb0, 0xe0, 0xad, 0x20, 0x17, 0x28, 0x93, 0x03, 0xf9,
-	0xaa, 0xcc, 0x09, 0x4e, 0xe8, 0x22, 0x15, 0x32, 0xb5, 0xee, 0xab, 0xd2, 0xe8, 0xc1, 0xd6, 0x8c,
-	0xa4, 0xe4, 0x53, 0x1c, 0xc4, 0x98, 0xad, 0xad, 0x46, 0x41, 0xcf, 0xa5, 0x71, 0x3b, 0xcf, 0xad,
-	0x9c, 0x1c, 0x1b, 0x5a, 0xf5, 0x7d, 0x55, 0xa6, 0xd1, 0x6f, 0x00, 0x1b, 0x53, 0x1e, 0x19, 0x6f,
-	0x60, 0xbb, 0x72, 0xd4, 0x0f, 0xaa, 0x47, 0x54, 0x1b, 0xc9, 0x7e, 0x74, 0x11, 0x2b, 0x77, 0xe3,
-	0x3d, 0xbc, 0x5d, 0x1d, 0x17, 0x5d, 0xeb, 0xab, 0x70, 0xfb, 0xf1, 0x65, 0xae, 0x8c, 0xed, 0x9b,
-	0x5f, 0xf2, 0x7b, 0x9a, 0xb8, 0xdb, 0x3d, 0x02, 0xbb, 0x3d, 0x02, 0xff, 0xf7, 0x08, 0x7c, 0x3f,
-	0x20, 0x6d, 0x77, 0x40, 0xda, 0xdf, 0x03, 0xd2, 0x3e, 0x98, 0xb5, 0x6b, 0x12, 0xeb, 0x8c, 0xf0,
-	0x59, 0xb3, 0xf8, 0xb7, 0x9e, 0x5e, 0x05, 0x00, 0x00, 0xff, 0xff, 0xb4, 0x47, 0x96, 0xfd, 0xfa,
-	0x02, 0x00, 0x00,
+	// 466 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x53, 0x4d, 0x6b, 0xd4, 0x40,
+	0x18, 0xce, 0x6c, 0xb1, 0x92, 0xe9, 0xfa, 0xd1, 0x10, 0x69, 0x36, 0xe2, 0x74, 0x09, 0xa8, 0x65,
+	0xc1, 0x84, 0x56, 0x50, 0xe8, 0xcd, 0x15, 0x8f, 0x01, 0x89, 0x5f, 0x50, 0x10, 0x99, 0x26, 0xe3,
+	0x34, 0x87, 0x64, 0xc2, 0xcc, 0x6c, 0xdd, 0xbd, 0x89, 0x47, 0x4f, 0xde, 0xfc, 0x0b, 0x1e, 0xf7,
+	0xa0, 0xff, 0xa1, 0xc7, 0xe2, 0xc9, 0x93, 0xc8, 0xee, 0x61, 0xff, 0x86, 0x24, 0x93, 0x69, 0x9b,
+	0x2c, 0xec, 0x5e, 0x92, 0xbc, 0xcf, 0xf3, 0xbe, 0xcf, 0xf3, 0xcc, 0x47, 0xe0, 0x1d, 0x99, 0x4a,
+	0x9c, 0x07, 0x9c, 0x7c, 0xc2, 0x3c, 0x09, 0xe4, 0xd8, 0x2f, 0x38, 0x93, 0xcc, 0xea, 0x56, 0xb0,
+	0xaf, 0x60, 0x77, 0x1b, 0x67, 0x69, 0xce, 0x82, 0xea, 0xa9, 0x1a, 0xdc, 0x9d, 0x98, 0x89, 0x8c,
+	0x89, 0x20, 0x13, 0x34, 0x38, 0xdd, 0x2f, 0x5f, 0x35, 0xd1, 0x53, 0xc4, 0x87, 0xaa, 0x0a, 0x54,
+	0x51, 0x53, 0x36, 0x65, 0x94, 0x29, 0xbc, 0xfc, 0xd2, 0x03, 0x8d, 0x04, 0x05, 0xe6, 0x38, 0xab,
+	0x07, 0xbc, 0x5f, 0x00, 0xde, 0x0a, 0x05, 0x7d, 0x53, 0x24, 0x58, 0x92, 0x97, 0x15, 0x63, 0x3d,
+	0x81, 0x26, 0x1e, 0xc9, 0x13, 0xc6, 0x53, 0x39, 0x71, 0x40, 0x1f, 0xec, 0x99, 0x43, 0xe7, 0xf7,
+	0xcf, 0x47, 0x76, 0xed, 0xf4, 0x2c, 0x49, 0x38, 0x11, 0xe2, 0x95, 0xe4, 0x69, 0x4e, 0xa3, 0xcb,
+	0x56, 0xeb, 0x29, 0xdc, 0x54, 0xda, 0x4e, 0xa7, 0x0f, 0xf6, 0xb6, 0x0e, 0x6c, 0xff, 0xea, 0x12,
+	0x7d, 0xa5, 0x3e, 0x34, 0xcf, 0xfe, 0xee, 0x1a, 0x3f, 0x16, 0xd3, 0x01, 0x88, 0xea, 0xf6, 0xc3,
+	0xfd, 0x2f, 0x8b, 0xe9, 0xe0, 0x52, 0xe8, 0xeb, 0x62, 0x3a, 0x40, 0x2a, 0xf2, 0x58, 0x87, 0x6e,
+	0x65, 0xf4, 0x7a, 0x70, 0xa7, 0x05, 0x45, 0x44, 0x14, 0x2c, 0x17, 0xc4, 0x3b, 0x85, 0xb7, 0x43,
+	0x41, 0x9f, 0x73, 0x82, 0x25, 0x79, 0xcb, 0x46, 0xf1, 0x09, 0xe1, 0x96, 0x03, 0xaf, 0xc7, 0x25,
+	0xc0, 0xb8, 0x5a, 0x50, 0xa4, 0xcb, 0x92, 0xc1, 0x19, 0x1b, 0xe5, 0x52, 0xa5, 0x36, 0x23, 0x5d,
+	0x5a, 0x7d, 0xb8, 0x75, 0x4c, 0x72, 0xf2, 0x31, 0x8d, 0x53, 0xcc, 0x27, 0xce, 0x46, 0xc5, 0x5e,
+	0x85, 0x0e, 0xbb, 0x65, 0x6e, 0xad, 0xe4, 0xb9, 0xd0, 0x69, 0xfb, 0x5e, 0x64, 0x7a, 0x0f, 0xb7,
+	0x43, 0x41, 0x5f, 0x8c, 0x25, 0xc7, 0xb1, 0x5c, 0x1f, 0xaa, 0x65, 0xdd, 0x59, 0x67, 0x7d, 0x17,
+	0xf6, 0x96, 0xe4, 0xb5, 0xf7, 0xc1, 0xf7, 0x0e, 0xdc, 0x08, 0x05, 0xb5, 0x5e, 0xc3, 0x6e, 0xe3,
+	0x98, 0xef, 0x35, 0x8f, 0xa7, 0xb5, 0x9d, 0xee, 0xfd, 0x95, 0xb4, 0x56, 0xb7, 0xde, 0xc1, 0x1b,
+	0xcd, 0xad, 0x46, 0x4b, 0x73, 0x0d, 0xde, 0x7d, 0xb0, 0x9a, 0xbf, 0x10, 0x3e, 0x82, 0x37, 0x5b,
+	0xfb, 0xb5, 0xbb, 0x34, 0xd9, 0x6c, 0x70, 0x1f, 0xae, 0x69, 0xd0, 0xda, 0xee, 0xb5, 0xcf, 0xe5,
+	0xfd, 0x1b, 0xfa, 0x67, 0x33, 0x04, 0xce, 0x67, 0x08, 0xfc, 0x9b, 0x21, 0xf0, 0x6d, 0x8e, 0x8c,
+	0xf3, 0x39, 0x32, 0xfe, 0xcc, 0x91, 0x71, 0x64, 0xb7, 0xae, 0x9f, 0x9c, 0x14, 0x44, 0x1c, 0x6f,
+	0x56, 0xff, 0xcc, 0xe3, 0xff, 0x01, 0x00, 0x00, 0xff, 0xff, 0xd2, 0x34, 0x5f, 0x42, 0xd2, 0x03,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -277,6 +370,7 @@ type MsgClient interface {
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	CreateVoucher(ctx context.Context, in *MsgCreateVoucher, opts ...grpc.CallOption) (*MsgCreateVoucherResponse, error)
+	ExtractVoucher(ctx context.Context, in *MsgExtractVoucher, opts ...grpc.CallOption) (*MsgExtractVoucherResponse, error)
 }
 
 type msgClient struct {
@@ -305,12 +399,22 @@ func (c *msgClient) CreateVoucher(ctx context.Context, in *MsgCreateVoucher, opt
 	return out, nil
 }
 
+func (c *msgClient) ExtractVoucher(ctx context.Context, in *MsgExtractVoucher, opts ...grpc.CallOption) (*MsgExtractVoucherResponse, error) {
+	out := new(MsgExtractVoucherResponse)
+	err := c.cc.Invoke(ctx, "/titan.reward.Msg/ExtractVoucher", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	CreateVoucher(context.Context, *MsgCreateVoucher) (*MsgCreateVoucherResponse, error)
+	ExtractVoucher(context.Context, *MsgExtractVoucher) (*MsgExtractVoucherResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -322,6 +426,9 @@ func (*UnimplementedMsgServer) UpdateParams(ctx context.Context, req *MsgUpdateP
 }
 func (*UnimplementedMsgServer) CreateVoucher(ctx context.Context, req *MsgCreateVoucher) (*MsgCreateVoucherResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateVoucher not implemented")
+}
+func (*UnimplementedMsgServer) ExtractVoucher(ctx context.Context, req *MsgExtractVoucher) (*MsgExtractVoucherResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExtractVoucher not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -364,6 +471,24 @@ func _Msg_CreateVoucher_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_ExtractVoucher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgExtractVoucher)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).ExtractVoucher(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/titan.reward.Msg/ExtractVoucher",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).ExtractVoucher(ctx, req.(*MsgExtractVoucher))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "titan.reward.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -375,6 +500,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateVoucher",
 			Handler:    _Msg_CreateVoucher_Handler,
+		},
+		{
+			MethodName: "ExtractVoucher",
+			Handler:    _Msg_ExtractVoucher_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -511,6 +640,66 @@ func (m *MsgCreateVoucherResponse) MarshalToSizedBuffer(dAtA []byte) (int, error
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgExtractVoucher) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgExtractVoucher) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgExtractVoucher) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Beneficiary) > 0 {
+		i -= len(m.Beneficiary)
+		copy(dAtA[i:], m.Beneficiary)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Beneficiary)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgExtractVoucherResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgExtractVoucherResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgExtractVoucherResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -568,6 +757,32 @@ func (m *MsgCreateVoucher) Size() (n int) {
 }
 
 func (m *MsgCreateVoucherResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgExtractVoucher) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Beneficiary)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgExtractVoucherResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -920,6 +1135,170 @@ func (m *MsgCreateVoucherResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgCreateVoucherResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgExtractVoucher) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgExtractVoucher: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgExtractVoucher: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Beneficiary", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Beneficiary = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgExtractVoucherResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgExtractVoucherResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgExtractVoucherResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
