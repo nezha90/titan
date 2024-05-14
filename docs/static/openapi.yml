@@ -19473,6 +19473,48 @@ paths:
           type: string
       tags:
         - Query
+  /titan/reward/show_unextracted_voucher/{beneficiary}:
+    get:
+      summary: Queries a list of ShowUnextractedVoucher items.
+      operationId: TitanRewardQuery_ShowUnextractedVoucher
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              voucher:
+                type: object
+                properties:
+                  amounts:
+                    type: string
+                  beneficiary:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: beneficiary
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
   /titan.tokenfactory.Msg/CreateDenom:
     post:
       operationId: TitanTokenfactoryMsg_CreateDenom
@@ -27500,6 +27542,16 @@ definitions:
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
   titan.reward.QueryShowExtractedVoucherResponse:
+    type: object
+    properties:
+      voucher:
+        type: object
+        properties:
+          amounts:
+            type: string
+          beneficiary:
+            type: string
+  titan.reward.QueryShowUnextractedVoucherResponse:
     type: object
     properties:
       voucher:

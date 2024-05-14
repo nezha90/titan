@@ -24,6 +24,13 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "beneficiary"}},
 				},
 
+				{
+					RpcMethod:      "ShowUnextractedVoucher",
+					Use:            "show-unextracted-voucher [beneficiary]",
+					Short:          "Query show-unextracted-voucher",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "beneficiary"}},
+				},
+
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

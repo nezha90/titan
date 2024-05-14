@@ -25,6 +25,12 @@ service Query {
     option (google.api.http).get = "/titan/reward/show_extracted_voucher/{beneficiary}";
   
   }
+  
+  // Queries a list of ShowUnextractedVoucher items.
+  rpc ShowUnextractedVoucher (QueryShowUnextractedVoucherRequest) returns (QueryShowUnextractedVoucherResponse) {
+    option (google.api.http).get = "/titan/reward/show_unextracted_voucher/{beneficiary}";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -41,6 +47,14 @@ message QueryShowExtractedVoucherRequest {
 }
 
 message QueryShowExtractedVoucherResponse {
+  Voucher voucher = 1;
+}
+
+message QueryShowUnextractedVoucherRequest {
+  string beneficiary = 1;
+}
+
+message QueryShowUnextractedVoucherResponse {
   Voucher voucher = 1;
 }
 
