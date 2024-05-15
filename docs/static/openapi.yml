@@ -19273,12 +19273,14 @@ paths:
             type: object
             properties:
               voucher:
-                type: object
-                properties:
-                  amounts:
-                    type: string
-                  beneficiary:
-                    type: string
+                type: array
+                items:
+                  type: object
+                  properties:
+                    amounts:
+                      type: string
+                    beneficiary:
+                      type: string
               pagination:
                 type: object
                 properties:
@@ -19395,12 +19397,14 @@ paths:
             type: object
             properties:
               voucher:
-                type: object
-                properties:
-                  amounts:
-                    type: string
-                  beneficiary:
-                    type: string
+                type: array
+                items:
+                  type: object
+                  properties:
+                    amounts:
+                      type: string
+                    beneficiary:
+                      type: string
               pagination:
                 type: object
                 properties:
@@ -27822,12 +27826,14 @@ definitions:
     type: object
     properties:
       voucher:
-        type: object
-        properties:
-          amounts:
-            type: string
-          beneficiary:
-            type: string
+        type: array
+        items:
+          type: object
+          properties:
+            amounts:
+              type: string
+            beneficiary:
+              type: string
       pagination:
         type: object
         properties:
@@ -27858,12 +27864,14 @@ definitions:
     type: object
     properties:
       voucher:
-        type: object
-        properties:
-          amounts:
-            type: string
-          beneficiary:
-            type: string
+        type: array
+        items:
+          type: object
+          properties:
+            amounts:
+              type: string
+            beneficiary:
+              type: string
       pagination:
         type: object
         properties:
