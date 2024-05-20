@@ -1,0 +1,391 @@
+swagger: '2.0'
+info:
+  title: HTTP API Console titan.reward
+  name: ''
+  description: ''
+paths:
+  /titan/reward/list_extracted_voucher:
+    get:
+      operationId: Query_ListExtractedVoucher
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              voucher:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    amounts:
+                      type: string
+                    beneficiary:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /titan/reward/list_unextracted_voucher:
+    get:
+      operationId: Query_ListUnextractedVoucher
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              voucher:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    amounts:
+                      type: string
+                    beneficiary:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /titan/reward/params:
+    get:
+      operationId: Query_Params
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /titan/reward/show_extracted_voucher/{beneficiary}:
+    get:
+      operationId: Query_ShowExtractedVoucher
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              voucher:
+                type: object
+                properties:
+                  amounts:
+                    type: string
+                  beneficiary:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: beneficiary
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /titan/reward/show_unextracted_voucher/{beneficiary}:
+    get:
+      operationId: Query_ShowUnextractedVoucher
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              voucher:
+                type: object
+                properties:
+                  amounts:
+                    type: string
+                  beneficiary:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: beneficiary
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+definitions:
+  Any:
+    type: object
+    properties:
+      '@type':
+        type: string
+    additionalProperties: {}
+  Status:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      details:
+        type: array
+        items:
+          type: object
+          properties:
+            '@type':
+              type: string
+          additionalProperties: {}
+  PageRequest:
+    type: object
+    properties:
+      key:
+        type: string
+        format: byte
+      offset:
+        type: string
+        format: uint64
+      limit:
+        type: string
+        format: uint64
+      count_total:
+        type: boolean
+      reverse:
+        type: boolean
+  PageResponse:
+    type: object
+    properties:
+      next_key:
+        type: string
+        format: byte
+      total:
+        type: string
+        format: uint64
+  Params:
+    type: object
+  QueryListExtractedVoucherResponse:
+    type: object
+    properties:
+      voucher:
+        type: array
+        items:
+          type: object
+          properties:
+            amounts:
+              type: string
+            beneficiary:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
+  QueryListUnextractedVoucherResponse:
+    type: object
+    properties:
+      voucher:
+        type: array
+        items:
+          type: object
+          properties:
+            amounts:
+              type: string
+            beneficiary:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
+  QueryParamsResponse:
+    type: object
+    properties:
+      params:
+        type: object
+  QueryShowExtractedVoucherResponse:
+    type: object
+    properties:
+      voucher:
+        type: object
+        properties:
+          amounts:
+            type: string
+          beneficiary:
+            type: string
+  QueryShowUnextractedVoucherResponse:
+    type: object
+    properties:
+      voucher:
+        type: object
+        properties:
+          amounts:
+            type: string
+          beneficiary:
+            type: string
+  Voucher:
+    type: object
+    properties:
+      amounts:
+        type: string
+      beneficiary:
+        type: string
+  MsgCreateVoucherResponse:
+    type: object
+  MsgExtractVoucherResponse:
+    type: object
+  MsgUpdateParamsResponse:
+    type: object
